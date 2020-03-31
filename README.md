@@ -1,1 +1,1 @@
-# tic-tac-toe
+Using this project to practice Object Oriented programming even more with factory functions and the module pattern.
