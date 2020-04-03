@@ -38,25 +38,7 @@ const gameBoard = (() => {
 })()
 
 const display =(() => {
-    
-    var square0 = document.getElementById(`square0`)    
-
-    var square1 = document.getElementById(`square1`)
-
-    var square2 = document.getElementById(`square2`)
-
-    var square3 = document.getElementById(`square3`)
-
-    var square4 = document.getElementById(`square4`)
-
-    var square5 = document.getElementById(`square5`)
-
-    var square6 = document.getElementById(`square6`)
-
-    var square7 = document.getElementById(`square7`)
-
-    var square8 = document.getElementById(`square8`)
-    
+ 
     //Senses which player is currently clicking and returns their answer.
     let playerSensor = (boardSquare) => {
 
@@ -68,56 +50,47 @@ const display =(() => {
                     case 'square0':
                         gameBoard.array[0] = 'X'
                         document.getElementById(`square0`).innerHTML = gameBoard.array[0]
-                        playerOne.markerChange()
-                        playerTwo.markerChange()
+                        playerOne.marker = false
                         break
                     case 'square1':
                         gameBoard.array[1] = 'X'
                         document.getElementById(`square1`).innerHTML = gameBoard.array[1]
-                        playerOne.markerChange()
-                        playerTwo.markerChange()
+                        playerOne.marker = false
                         break
                     case 'square2':
                         gameBoard.array[2] = 'X'
                         document.getElementById(`square2`).innerHTML = gameBoard.array[2]
-                        playerOne.markerChange()
-                        playerTwo.markerChange()
+                        playerOne.marker = false
                         break
                     case 'square3':
                         gameBoard.array[3] = 'X'
                         document.getElementById(`square3`).innerHTML = gameBoard.array[3]
-                        playerOne.markerChange()
-                        playerTwo.markerChange()
+                        playerOne.marker = false
                         break
                     case 'square4':
                         gameBoard.array[4] = 'X'
                         document.getElementById(`square4`).innerHTML = gameBoard.array[4]
-                        playerOne.markerChange()
-                        playerTwo.markerChange()
+                        playerOne.marker = false
                         break
                     case 'square5':
                         gameBoard.array[5] = 'X'
                         document.getElementById(`square5`).innerHTML = gameBoard.array[5]
-                        playerOne.markerChange()
-                        playerTwo.markerChange()
+                        playerOne.marker = false
                         break
                     case 'square6':
                         gameBoard.array[6] = 'X'
                         document.getElementById(`square6`).innerHTML = gameBoard.array[6]
-                        playerOne.markerChange()
-                        playerTwo.markerChange()
+                        playerOne.marker = false
                         break
                     case 'square7':
                         gameBoard.array[7] = 'X'
                         document.getElementById(`square7`).innerHTML = gameBoard.array[7]
-                        playerOne.markerChange()
-                        playerTwo.markerChange()
+                        playerOne.marker = false
                         break
                     case 'square8':
                         gameBoard.array[8] = 'X'
                         document.getElementById(`square8`).innerHTML = gameBoard.array[8]
-                        playerOne.markerChange()
-                        playerTwo.markerChange()
+                        playerOne.marker = false
                         break
                 };
                 break
@@ -128,62 +101,52 @@ const display =(() => {
                     case 'square0':
                         gameBoard.array[0] = 'O'
                         document.getElementById(`square0`).innerHTML = gameBoard.array[0]
-                        playerOne.markerChange()
-                        playerTwo.markerChange()
+                        playerOne.marker = true
                         break
                     case 'square1':
                         gameBoard.array[1] = 'O'
                         document.getElementById(`square1`).innerHTML = gameBoard.array[1]
-                        playerOne.markerChange()
-                        playerTwo.markerChange()
+                        playerOne.marker = true
                         break
                     case 'square2':
                         gameBoard.array[2] = 'O'
                         document.getElementById(`square2`).innerHTML = gameBoard.array[2]
-                        playerOne.markerChange()
-                        playerTwo.markerChange()
+                        playerOne.marker = true
                         break
                     case 'square3':
                         gameBoard.array[3] = 'O'
                         document.getElementById(`square3`).innerHTML = gameBoard.array[3]
-                        playerOne.markerChange()
-                        playerTwo.markerChange()
+                        playerOne.marker = true
                         break
                     case 'square4':
                         gameBoard.array[4] = 'O'
                         document.getElementById(`square4`).innerHTML = gameBoard.array[4]
-                        playerOne.markerChange()
-                        playerTwo.markerChange()
+                        playerOne.marker = true
                         break
                     case 'square5':
                         gameBoard.array[5] = 'O'
                         document.getElementById(`square5`).innerHTML = gameBoard.array[5]
-                        playerOne.markerChange()
-                        playerTwo.markerChange()
+                        playerOne.marker = true
                         break
                     case 'square6':
                         gameBoard.array[6] = 'O'
                         document.getElementById(`square6`).innerHTML = gameBoard.array[6]
-                        playerOne.markerChange()
-                        playerTwo.markerChange()
+                        playerOne.marker = true
                         break
                     case 'square7':
                         gameBoard.array[7] = 'O'
                         document.getElementById(`square7`).innerHTML = gameBoard.array[7]
-                        playerOne.markerChange()
-                        playerTwo.markerChange()
+                        playerOne.marker = true
                         break
                     case 'square8':
                         gameBoard.array[8] = 'O'
                         document.getElementById(`square8`).innerHTML = gameBoard.array[8]
-                        playerOne.markerChange()
-                        playerTwo.markerChange()
+                        playerOne.marker = true
                         break
                 };
                 break
             };
         console.log('Player one is set to ' + playerOne.marker)
-        console.log('Player two is set to ' + playerTwo.marker)
     };
 
     return {playerSensor}
@@ -193,25 +156,30 @@ const display =(() => {
 //Factories
 const playerFactory = (name, marker) => {
 
+    name = name;
     marker = marker;
 
-    //This runs after playerSensor()
+    //This might be removed. Temporarily being kept, in case needed.
     let markerChange = (marker) => {
         switch(marker){
             case false:
-                marker = true
+                this.marker = true
                 break
             case true:
-                marker = false
+                this.marker = false
                 break
         };
     };
+    //This might be removed. Temporarily being kept, in case needed.
+    let winnerChosen = (victor) => {
+        //code
+    }
 
-    return {name, marker, markerChange};
+    return {name, marker};
 };
 
 //Objects
-const playerOne = playerFactory('Temp1', true)
-const playerTwo = playerFactory('Temp2', false)
+let playerOne = playerFactory('Temp1', true)
+let playerTwo = playerFactory('Temp2', false)
 
 gameBoard.createGrid()
