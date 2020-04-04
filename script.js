@@ -4,8 +4,61 @@ const gameBoard = (() => {
     //Grid HTML content
     let array =  ['','','','','','','','','',]
 
+    let winConditions = {
+    /*
+    HORIZONTAL: If 0 1 2, 3 4 5, or 6 7 8 are one letter, that letter wins.
+    VERTICAL: If 0 3 6, 1 4 7, or 2 5 8 are one letter, that letter wins.
+    DIAGONAL: If 0 4 8, or 2 4 6 are one letter, that letter wins.
+    TIE: If all 9 array slots are filled, the game ends in a tie IF a player doesn't win that round
+    */
+        //Horizontal
+        win1 : [],
+        //Vertical
+        win2 : [],
+        //Diagonal
+        win3 : [],
+        //Tie
+        win4 : [],
+
+        /* PSEUDOCODE/TEMP
+        global: if(winner === playerOne || winner === playerTwo){endGame}
+
+        ALL HORIZONTAL, playerOne WINS
+        if (gameBoard.array[0] = X && gameBoard.array[1] = X && gameBoard.array[2] = X){
+            return winner = playerOne
+        } else if(gameBoard.array[3] = X && gameBoard.array[4] = X && gameBoard.array[5] = X)){
+            return winner = playerOne
+        } else if(gameBoard.array[6] = X && gameBoard.array[7] = X && gameBoard.array[8] = X) 
+            {return winner = playerOne}
+
+        ALL VERTICAL, playerOne WINS
+        if (gameBoard.array[0] = X && gameBoard.array[3] = X && gameBoard.array[6] = X){
+            return winner = playerOne
+        } else if(gameBoard.array[1] = X && gameBoard.array[4] = X && gameBoard.array[7] = X)){
+            return winner = playerOne
+        } else if(gameBoard.array[2] = X && gameBoard.array[5] = X && gameBoard.array[8] = X) 
+            {return winner = playerOne}
+
+        ALL DIAGONAL, playerOne WINS
+        if (gameBoard.array[0] = X && gameBoard.array[4] = X && gameBoard.array[8] = X){
+            return winner = playerOne
+        } else if(gameBoard.array[2] = X && gameBoard.array[4] = X && gameBoard.array[6] = X)){
+            return winner = playerOne
+        }
+
+        TIE (Last check run)
+        for (let i = 0; i <= array.length; i++){
+            //if all of array[] is truthy, endGame.
+        }
+
+        Code above can be reused for playerTwo. Replace X with O, return winner = playerTwo.
+        How to store these?
+        */
+
+    };
+
     //Generates the grid
-    let createGrid = function() {
+    let createGrid = () => {
 
         let boardContainer = document.getElementById('boardContainer');
 
@@ -33,9 +86,20 @@ const gameBoard = (() => {
 
     };
 
+    //Checks for a winner
+    let endGame = () => {
+        /* if (winner = playerOne || playerTwo){
+                Stops the game. returns winner to display div.
+            } else {
+                break
+            }
+        */
+    };
+
     return {array, createGrid};
     
 })()
+
 
 const display =(() => {
  
