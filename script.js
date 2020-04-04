@@ -48,49 +48,94 @@ const display =(() => {
                 console.log('The node is ' + boardSquare.id)
                 switch(boardSquare.id){
                     case 'square0':
-                        gameBoard.array[0] = 'X'
-                        document.getElementById(`square0`).innerHTML = gameBoard.array[0]
-                        playerOne.marker = false
+                        if (gameBoard.array[0] === 'X' || gameBoard.array[0] === 'O'){
+                            console.log("You cannot override this answer.")
+                            break 
+                        } else {
+                            gameBoard.array[0] = 'X'
+                            document.getElementById(`square0`).innerHTML = gameBoard.array[0]
+                            playerOne.marker = false
+                        };
                         break
                     case 'square1':
-                        gameBoard.array[1] = 'X'
-                        document.getElementById(`square1`).innerHTML = gameBoard.array[1]
-                        playerOne.marker = false
+                        if (gameBoard.array[1] === 'X' || gameBoard.array[1] === 'O'){
+                            console.log("You cannot override this answer.")
+                            break 
+                        } else {
+                            gameBoard.array[1] = 'X'
+                            document.getElementById(`square1`).innerHTML = gameBoard.array[1]
+                            playerOne.marker = false
+                        };
                         break
                     case 'square2':
-                        gameBoard.array[2] = 'X'
-                        document.getElementById(`square2`).innerHTML = gameBoard.array[2]
-                        playerOne.marker = false
+                        if (gameBoard.array[2] === 'X' || gameBoard.array[2] === 'O'){
+                            console.log("You cannot override this answer.")
+                            break 
+                        } else {
+                            gameBoard.array[2] = 'X'
+                            document.getElementById(`square2`).innerHTML = gameBoard.array[2]
+                            playerOne.marker = false
+                        };
                         break
                     case 'square3':
-                        gameBoard.array[3] = 'X'
-                        document.getElementById(`square3`).innerHTML = gameBoard.array[3]
-                        playerOne.marker = false
+                        if (gameBoard.array[3] === 'X' || gameBoard.array[3] === 'O'){
+                            console.log("You cannot override this answer.")
+                            break 
+                        } else {
+                            gameBoard.array[3] = 'X'
+                            document.getElementById(`square3`).innerHTML = gameBoard.array[3]
+                            playerOne.marker = false
+                        };
                         break
                     case 'square4':
-                        gameBoard.array[4] = 'X'
-                        document.getElementById(`square4`).innerHTML = gameBoard.array[4]
-                        playerOne.marker = false
+                        if (gameBoard.array[4] === 'X' || gameBoard.array[4] === 'O'){
+                            console.log("You cannot override this answer.")
+                            break 
+                        } else {
+                            gameBoard.array[4] = 'X'
+                            document.getElementById(`square4`).innerHTML = gameBoard.array[4]
+                            playerOne.marker = false
+                        };
                         break
                     case 'square5':
-                        gameBoard.array[5] = 'X'
-                        document.getElementById(`square5`).innerHTML = gameBoard.array[5]
-                        playerOne.marker = false
+                        if (gameBoard.array[5] === 'X' || gameBoard.array[5] === 'O'){
+                            console.log("You cannot override this answer.")
+                            break 
+                        } else {
+                            gameBoard.array[5] = 'X'
+                            document.getElementById(`square5`).innerHTML = gameBoard.array[5]
+                            playerOne.marker = false
+                        };
                         break
                     case 'square6':
-                        gameBoard.array[6] = 'X'
-                        document.getElementById(`square6`).innerHTML = gameBoard.array[6]
-                        playerOne.marker = false
+                        if (gameBoard.array[6] === 'X' || gameBoard.array[6] === 'O'){
+                            console.log("You cannot override this answer.")
+                            break 
+                        } else {
+                            gameBoard.array[6] = 'X'
+                            document.getElementById(`square6`).innerHTML = gameBoard.array[6]
+                            playerOne.marker = false
+                        };
                         break
                     case 'square7':
-                        gameBoard.array[7] = 'X'
-                        document.getElementById(`square7`).innerHTML = gameBoard.array[7]
-                        playerOne.marker = false
+                        if (gameBoard.array[7] === 'X' || gameBoard.array[7] === 'O'){
+                            console.log("You cannot override this answer.")
+                            break 
+                        } else {
+                            gameBoard.array[7] = 'X'
+                            document.getElementById(`square7`).innerHTML = gameBoard.array[7]
+                            playerOne.marker = false
+                        };
                         break
                     case 'square8':
-                        gameBoard.array[8] = 'X'
-                        document.getElementById(`square8`).innerHTML = gameBoard.array[8]
-                        playerOne.marker = false
+                        if (gameBoard.array[8] === 'X' || gameBoard.array[8] === 'O'){
+                            console.log("You cannot override this answer.")
+                            break 
+                        } else {
+                            gameBoard.array[8] = 'X'
+                            document.getElementById(`square8`).innerHTML = gameBoard.array[8]
+                            playerOne.marker = false
+                        };
                         break
                 };
                 break
@@ -99,49 +144,94 @@ const display =(() => {
                 console.log('The node is ' + boardSquare.id)
                 switch(boardSquare.id){
                     case 'square0':
-                        gameBoard.array[0] = 'O'
-                        document.getElementById(`square0`).innerHTML = gameBoard.array[0]
-                        playerOne.marker = true
+                        if (gameBoard.array[0] === 'X' || gameBoard.array[0] === 'O'){
+                            console.log("You cannot override this answer.")
+                            break 
+                        } else {
+                            gameBoard.array[0] = 'O'
+                            document.getElementById(`square0`).innerHTML = gameBoard.array[4]
+                            playerOne.marker = true
+                        };
                         break
                     case 'square1':
-                        gameBoard.array[1] = 'O'
-                        document.getElementById(`square1`).innerHTML = gameBoard.array[1]
-                        playerOne.marker = true
+                        if (gameBoard.array[1] === 'X' || gameBoard.array[1] === 'O'){
+                            console.log("You cannot override this answer.")
+                            break 
+                        } else {
+                            gameBoard.array[1] = 'O'
+                            document.getElementById(`square1`).innerHTML = gameBoard.array[1]
+                            playerOne.marker = true
+                        };
                         break
                     case 'square2':
-                        gameBoard.array[2] = 'O'
-                        document.getElementById(`square2`).innerHTML = gameBoard.array[2]
-                        playerOne.marker = true
+                        if (gameBoard.array[2] === 'X' || gameBoard.array[2] === 'O'){
+                            console.log("You cannot override this answer.")
+                            break 
+                        } else {
+                            gameBoard.array[2] = 'O'
+                            document.getElementById(`square2`).innerHTML = gameBoard.array[2]
+                            playerOne.marker = true
+                        };
                         break
                     case 'square3':
-                        gameBoard.array[3] = 'O'
-                        document.getElementById(`square3`).innerHTML = gameBoard.array[3]
-                        playerOne.marker = true
+                        if (gameBoard.array[3] === 'X' || gameBoard.array[3] === 'O'){
+                            console.log("You cannot override this answer.")
+                            break 
+                        } else {
+                            gameBoard.array[3] = 'O'
+                            document.getElementById(`square3`).innerHTML = gameBoard.array[3]
+                            playerOne.marker = true
+                        };
                         break
                     case 'square4':
-                        gameBoard.array[4] = 'O'
-                        document.getElementById(`square4`).innerHTML = gameBoard.array[4]
-                        playerOne.marker = true
+                        if (gameBoard.array[4] === 'X' || gameBoard.array[4] === 'O'){
+                            console.log("You cannot override this answer.")
+                            break 
+                        } else {
+                            gameBoard.array[4] = 'O'
+                            document.getElementById(`square4`).innerHTML = gameBoard.array[4]
+                            playerOne.marker = true
+                        };
                         break
                     case 'square5':
-                        gameBoard.array[5] = 'O'
-                        document.getElementById(`square5`).innerHTML = gameBoard.array[5]
-                        playerOne.marker = true
+                        if (gameBoard.array[5] === 'X' || gameBoard.array[5] === 'O'){
+                            console.log("You cannot override this answer.")
+                            break 
+                        } else {
+                            gameBoard.array[5] = 'O'
+                            document.getElementById(`square5`).innerHTML = gameBoard.array[5]
+                            playerOne.marker = true
+                        };
                         break
                     case 'square6':
-                        gameBoard.array[6] = 'O'
-                        document.getElementById(`square6`).innerHTML = gameBoard.array[6]
-                        playerOne.marker = true
+                        if (gameBoard.array[6] === 'X' || gameBoard.array[6] === 'O'){
+                            console.log("You cannot override this answer.")
+                            break 
+                        } else {
+                            gameBoard.array[6] = 'O'
+                            document.getElementById(`square6`).innerHTML = gameBoard.array[6]
+                            playerOne.marker = true
+                        };
                         break
                     case 'square7':
-                        gameBoard.array[7] = 'O'
-                        document.getElementById(`square7`).innerHTML = gameBoard.array[7]
-                        playerOne.marker = true
+                        if (gameBoard.array[7] === 'X' || gameBoard.array[7] === 'O'){
+                            console.log("You cannot override this answer.")
+                            break 
+                        } else {
+                            gameBoard.array[7] = 'O'
+                            document.getElementById(`square7`).innerHTML = gameBoard.array[7]
+                            playerOne.marker = true
+                        };
                         break
                     case 'square8':
-                        gameBoard.array[8] = 'O'
-                        document.getElementById(`square8`).innerHTML = gameBoard.array[8]
-                        playerOne.marker = true
+                        if (gameBoard.array[8] === 'X' || gameBoard.array[8] === 'O'){
+                            console.log("You cannot override this answer.")
+                            break 
+                        } else {
+                            gameBoard.array[8] = 'O'
+                            document.getElementById(`square8`).innerHTML = gameBoard.array[8]
+                            playerOne.marker = true
+                        };
                         break
                 };
                 break
@@ -149,7 +239,11 @@ const display =(() => {
         console.log('Player one is set to ' + playerOne.marker)
     };
 
-    return {playerSensor}
+    let currentPlayer = () => {
+        // Looks at playerOne.marker and tells you whose turn it is
+    };
+
+    return {playerSensor, currentPlayer}
 
 })()
 
