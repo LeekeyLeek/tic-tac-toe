@@ -2,13 +2,14 @@
 const gameBoard = (() => {
 
     //Grid HTML content
-    let array =  ['','','','','','','','','',]
+    let array =  ['','','','','','','','','']
     
-    //When set to a truthy value, game ends
-    let winner
+    //When set to playerOne or playerTwo, game ends
+    let winner = '';
     
-
+    //Checks to see if somebody has won
     let winCheck = () => {
+        
         /*
         HORIZONTAL: If 0 1 2, 3 4 5, or 6 7 8 are one letter, that letter wins.
         VERTICAL: If 0 3 6, 1 4 7, or 2 5 8 are one letter, that letter wins.
@@ -19,61 +20,43 @@ const gameBoard = (() => {
         //Player ONE
         //Horizontal
         if (gameBoard.array[0] == 'X' && gameBoard.array[1] == 'X' && gameBoard.array[2] == 'X') {
-            console.log('player one wins!')
-            return winner = playerOne
+            return gameBoard.winner = playerOne.name
         } else if (gameBoard.array[3] == 'X' && gameBoard.array[4] == 'X' && gameBoard.array[5] == 'X'){
-            console.log('player one wins!')
-            return winner = playerOne
+            return gameBoard.winner = playerOne.name
         } else if (gameBoard.array[6] == 'X' && gameBoard.array[7] == 'X' && gameBoard.array[8] == 'X'){
-            console.log('player one wins!')
-            return winner = playerOne
+            return gameBoard.winner = playerOne.name
         } //Horizontal
         else if (gameBoard.array[0] == 'X' && gameBoard.array[3] == 'X' && gameBoard.array[6] == 'X'){
-            console.log('player one wins!')
-            return winner = playerOne
+            return gameBoard.winner = playerOne.name
         } else if (gameBoard.array[1] == 'X' && gameBoard.array[4] == 'X' && gameBoard.array[7] == 'X'){
-            console.log('player one wins!')
-            return winner = playerOne
+            return gameBoard.winner = playerOne.name
         } else if (gameBoard.array[2] == 'X' && gameBoard.array[5] == 'X' && gameBoard.array[8] == 'X'){
-            console.log('player one wins!')
-            return winner = playerOne
+            return gameBoard.winner = playerOne.name
         } //Diagonal
         else if (gameBoard.array[0] == 'X' && gameBoard.array[4] == 'X' && gameBoard.array[8] == 'X'){
-            console.log('player one wins!')
-            return winner = playerOne
+            return gameBoard.winner = playerOne.name
         } else if (gameBoard.array[2] == 'X' && gameBoard.array[4] == 'X' && gameBoard.array[6] == 'X'){
-            console.log('player one wins!')
-            return winner = playerOne
+            return gameBoard.winner = playerOne.name
         } //Player TWO
         //Horizontal
         else if (gameBoard.array[0] == 'O' && gameBoard.array[1] == 'O' && gameBoard.array[2] == 'O'){
-            console.log('player two wins!')
-            return winner = playerTwo
+            return gameBoard.winner = playerTwo.name
         } else if (gameBoard.array[3] == 'O' && gameBoard.array[4] == 'O' && gameBoard.array[5] == 'O'){
-            console.log('player two wins!')
-            return winner = playerTwo
+            return gameBoard.winner = playerTwo.name
         } else if (gameBoard.array[6] == 'O' && gameBoard.array[7] == 'O' && gameBoard.array[8] == 'O'){
-            console.log('player two wins!')
-            return winner = playerTwo
+            return gameBoard.winner = playerTwo.name
         } //Vertical
         else if (gameBoard.array[0] == 'O' && gameBoard.array[3] == 'O' && gameBoard.array[6] == 'O'){
-            console.log('player two wins!')
-            return winner = playerTwo
+            return gameBoard.winner = playerTwo.name
         } else if (gameBoard.array[1] == 'O' && gameBoard.array[4] == 'O' && gameBoard.array[7] == 'O'){
-            console.log('player two wins!')
-            return winner = playerTwo
+            return gameBoard.winner = playerTwo.name
         } else if (gameBoard.array[2] == 'O' && gameBoard.array[5] == 'O' && gameBoard.array[8] == 'O'){
-            console.log('player two wins!')
-            return winner = playerTwo
+            return gameBoard.winner = playerTwo.name
         } //Diagonal
         else if (gameBoard.array[0] == 'O' && gameBoard.array[4] == 'O' && gameBoard.array[8] == 'O'){
-            console.log('player two wins!')
-            return winner = playerTwo
+            return gameBoard.winner = playerTwo.name
         } else if (gameBoard.array[2] == 'O' && gameBoard.array[4] == 'O' && gameBoard.array[6] == 'O'){
-            console.log('player two wins!')
-            return winner = playerTwo
-        } else {
-            console.log('There is no winner yet')
+            return gameBoard.winner = playerTwo.name
         }
 
     };
@@ -107,28 +90,48 @@ const gameBoard = (() => {
 
     };
 
-    //Stops the game. returns winner to display div.
+    // Returns winner to display div.
+    let winnerDisplay = document.getElementById('winner')
     let endGame = () => {
         
-         if (winner = playerOne || playerTwo){
-                console.log(`somebody wins!`)
-            } else {
-                return
-            }
+        switch(gameBoard.winner){
+            case playerOne.name:
+                winnerDisplay.innerHTML = 'Player one wins!';
+                break
+            case playerTwo.name:
+                winnerDisplay.innerHTML = 'Player two wins!';
+        };
         
     };
 
-    return {array, createGrid, winCheck, endGame};
+    //Resets the game when running. WIP
+    let resetGame = () => {
+        console.log('Restarting game...')
+        winnerDisplay.innerHTML = '';
+        array = ['','','','','','','','','',]
+        winner = '';
+    }
+    let resetButton = document.getElementById('reset')
+    resetButton.addEventListener('click', function(e){
+        resetGame()
+    })
+    
+    return {array, winner, createGrid, winCheck, endGame, resetGame, resetButton};
     
 })()
 
 
 const display =(() => {
  
-    //Senses which player is currently clicking and returns their answer.
+    //Determines which player is currently clicking and displays their answer.
     let playerSensor = (boardSquare) => {
+        //If Statement will stop the game if a winner was already declared
+        if (gameBoard.winner == playerOne.name || gameBoard.winner == playerTwo.name) {
+            console.log('The game is already over.')
+            return
+        } else {
 
-        switch(playerOne.marker){
+          switch(playerOne.marker){
 
             case true:
                 console.log('The node is ' + boardSquare.id)
@@ -138,11 +141,12 @@ const display =(() => {
                             console.log("You cannot override this answer.")
                             break 
                         } else {
-                            
                             gameBoard.array[0] = 'X'
                             gameBoard.winCheck()
                             document.getElementById(`square0`).innerHTML = gameBoard.array[0]
                             playerOne.marker = false
+                            currentPlayer()
+                            gameBoard.endGame()
                         };
                         break
                     case 'square1':
@@ -150,11 +154,12 @@ const display =(() => {
                             console.log("You cannot override this answer.")
                             break 
                         } else {
-                            
                             gameBoard.array[1] = 'X'
                             gameBoard.winCheck()
                             document.getElementById(`square1`).innerHTML = gameBoard.array[1]
                             playerOne.marker = false
+                            currentPlayer()
+                            gameBoard.endGame()
                         };
                         break
                     case 'square2':
@@ -166,6 +171,8 @@ const display =(() => {
                             gameBoard.winCheck()
                             document.getElementById(`square2`).innerHTML = gameBoard.array[2]
                             playerOne.marker = false
+                            currentPlayer()
+                            gameBoard.endGame()
                         };
                         break
                     case 'square3':
@@ -177,6 +184,8 @@ const display =(() => {
                             gameBoard.winCheck()
                             document.getElementById(`square3`).innerHTML = gameBoard.array[3]
                             playerOne.marker = false
+                            currentPlayer()
+                            gameBoard.endGame()
                         };
                         break
                     case 'square4':
@@ -188,6 +197,8 @@ const display =(() => {
                             gameBoard.winCheck()
                             document.getElementById(`square4`).innerHTML = gameBoard.array[4]
                             playerOne.marker = false
+                            currentPlayer()
+                            gameBoard.endGame()
                         };
                         break
                     case 'square5':
@@ -199,6 +210,8 @@ const display =(() => {
                             gameBoard.winCheck()
                             document.getElementById(`square5`).innerHTML = gameBoard.array[5]
                             playerOne.marker = false
+                            currentPlayer()
+                            gameBoard.endGame()
                         };
                         break
                     case 'square6':
@@ -210,6 +223,8 @@ const display =(() => {
                             gameBoard.array[6] = 'X'
                             document.getElementById(`square6`).innerHTML = gameBoard.array[6]
                             playerOne.marker = false
+                            currentPlayer()
+                            gameBoard.endGame()
                         };
                         break
                     case 'square7':
@@ -221,6 +236,8 @@ const display =(() => {
                             gameBoard.winCheck()
                             document.getElementById(`square7`).innerHTML = gameBoard.array[7]
                             playerOne.marker = false
+                            currentPlayer()
+                            gameBoard.endGame()
                         };
                         break
                     case 'square8':
@@ -232,6 +249,8 @@ const display =(() => {
                             gameBoard.winCheck()
                             document.getElementById(`square8`).innerHTML = gameBoard.array[8]
                             playerOne.marker = false
+                            currentPlayer()
+                            gameBoard.endGame()
                         };
                         break
                 };
@@ -249,6 +268,8 @@ const display =(() => {
                             gameBoard.winCheck()
                             document.getElementById(`square0`).innerHTML = gameBoard.array[4]
                             playerOne.marker = true
+                            currentPlayer()
+                            gameBoard.endGame()
                         };
                         break
                     case 'square1':
@@ -260,6 +281,8 @@ const display =(() => {
                             gameBoard.winCheck()
                             document.getElementById(`square1`).innerHTML = gameBoard.array[1]
                             playerOne.marker = true
+                            currentPlayer()
+                            gameBoard.endGame()
                         };
                         break
                     case 'square2':
@@ -271,6 +294,8 @@ const display =(() => {
                             gameBoard.winCheck()
                             document.getElementById(`square2`).innerHTML = gameBoard.array[2]
                             playerOne.marker = true
+                            currentPlayer()
+                            gameBoard.endGame()
                         };
                         break
                     case 'square3':
@@ -282,6 +307,8 @@ const display =(() => {
                             gameBoard.winCheck()
                             document.getElementById(`square3`).innerHTML = gameBoard.array[3]
                             playerOne.marker = true
+                            currentPlayer()
+                            gameBoard.endGame()
                         };
                         break
                     case 'square4':
@@ -293,6 +320,8 @@ const display =(() => {
                             gameBoard.winCheck()
                             document.getElementById(`square4`).innerHTML = gameBoard.array[4]
                             playerOne.marker = true
+                            currentPlayer()
+                            gameBoard.endGame()
                         };
                         break
                     case 'square5':
@@ -304,6 +333,8 @@ const display =(() => {
                             gameBoard.winCheck()
                             document.getElementById(`square5`).innerHTML = gameBoard.array[5]
                             playerOne.marker = true
+                            currentPlayer()
+                            gameBoard.endGame()
                         };
                         break
                     case 'square6':
@@ -315,6 +346,8 @@ const display =(() => {
                             gameBoard.winCheck()
                             document.getElementById(`square6`).innerHTML = gameBoard.array[6]
                             playerOne.marker = true
+                            currentPlayer()
+                            gameBoard.endGame()
                         };
                         break
                     case 'square7':
@@ -326,6 +359,8 @@ const display =(() => {
                             gameBoard.winCheck()
                             document.getElementById(`square7`).innerHTML = gameBoard.array[7]
                             playerOne.marker = true
+                            currentPlayer()
+                            gameBoard.endGame()
                         };
                         break
                     case 'square8':
@@ -337,33 +372,46 @@ const display =(() => {
                             gameBoard.winCheck()
                             document.getElementById(`square8`).innerHTML = gameBoard.array[8]
                             playerOne.marker = true
+                            currentPlayer()
+                            gameBoard.endGame()
                         };
                         break
                 };
                 break
             };
         console.log('Player one is set to ' + playerOne.marker)
+        }; // <= End of Else statement
     };
 
     let currentPlayer = () => {
-        // Looks at playerOne.marker and tells you whose turn it is
+        let currentPlayer = document.getElementById('currentPlayer')
+        
+        if (gameBoard.winner == playerOne.name || gameBoard.winner == playerTwo.name) {
+            currentPlayer.innerHTML = '';
+            playerOne.marker = true; // <= Resets player order, for resetGame()
+        } else if (playerOne.marker == true){
+            currentPlayer.innerHTML = 'It is Player Ones turn';
+        } else if (playerOne.marker == false){
+            currentPlayer.innerHTML = 'It is Player Twos turn';
+        }
+
     };
 
     return {playerSensor, currentPlayer}
 
 })()
 
-//Factories
+//Factory
 const playerFactory = (name, marker) => {
-
+    //Used to take player names and log the eventual winner
     name = name;
+    //Used to switch between the active player marking the board
     marker = marker;
 
     return {name, marker};
 };
 
-//Objects
+//Global
 let playerOne = playerFactory('Temp1', true)
 let playerTwo = playerFactory('Temp2', false)
-
 gameBoard.createGrid()
