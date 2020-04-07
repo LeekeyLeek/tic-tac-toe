@@ -101,6 +101,8 @@ const gameBoard = (() => {
             case playerTwo.name:
                 winnerDisplay.innerHTML = 'Player two wins!';
         };
+
+        
         
     };
 
@@ -108,8 +110,18 @@ const gameBoard = (() => {
     let resetGame = () => {
         console.log('Restarting game...')
         winnerDisplay.innerHTML = '';
-        array = ['','','','','','','','','',]
-        winner = '';
+        gameBoard.array = ['','','','','','','','','']
+        gameBoard.winner = '';
+
+        document.getElementById(`square0`).innerHTML = '';
+        document.getElementById(`square1`).innerHTML = '';
+        document.getElementById(`square2`).innerHTML = '';
+        document.getElementById(`square3`).innerHTML = '';
+        document.getElementById(`square4`).innerHTML = '';
+        document.getElementById(`square5`).innerHTML = '';
+        document.getElementById(`square6`).innerHTML = '';
+        document.getElementById(`square7`).innerHTML = '';
+        document.getElementById(`square8`).innerHTML = '';
     }
     let resetButton = document.getElementById('reset')
     resetButton.addEventListener('click', function(e){
@@ -127,7 +139,7 @@ const display =(() => {
     let playerSensor = (boardSquare) => {
         //If Statement will stop the game if a winner was already declared
         if (gameBoard.winner == playerOne.name || gameBoard.winner == playerTwo.name) {
-            console.log('The game is already over.')
+            alert('The game is already over. Press "Reset" to start a new game.')
             return
         } else {
 
