@@ -11,9 +11,9 @@ const gameBoard = (() => {
     let winCheck = () => {
         
         /*
-        HORIZONTAL: If 0 1 2, 3 4 5, or 6 7 8 are one letter, that letter wins.
-        VERTICAL: If 0 3 6, 1 4 7, or 2 5 8 are one letter, that letter wins.
-        DIAGONAL: If 0 4 8, or 2 4 6 are one letter, that letter wins.
+        HORIZONTAL: If 0 1 2, 3 4 5, or 6 7 8 are one letter, that player wins.
+        VERTICAL: If 0 3 6, 1 4 7, or 2 5 8 are one letter, that player wins.
+        DIAGONAL: If 0 4 8, or 2 4 6 are one letter, that player wins.
         TIE: If all 9 array slots are filled, the game ends in a tie IF a player doesn't win that round
         */
 
@@ -25,7 +25,7 @@ const gameBoard = (() => {
             return gameBoard.winner = playerOne.name
         } else if (gameBoard.array[6] == 'X' && gameBoard.array[7] == 'X' && gameBoard.array[8] == 'X'){
             return gameBoard.winner = playerOne.name
-        } //Horizontal
+        } //Vertical
         else if (gameBoard.array[0] == 'X' && gameBoard.array[3] == 'X' && gameBoard.array[6] == 'X'){
             return gameBoard.winner = playerOne.name
         } else if (gameBoard.array[1] == 'X' && gameBoard.array[4] == 'X' && gameBoard.array[7] == 'X'){
@@ -96,19 +96,16 @@ const gameBoard = (() => {
         
         switch(gameBoard.winner){
             case playerOne.name:
-                winnerDisplay.innerHTML = 'Player one wins!';
+                winnerDisplay.innerHTML = `${playerOne.name} wins! Press "Reset" to start a new game.`;
                 break
             case playerTwo.name:
-                winnerDisplay.innerHTML = 'Player two wins!';
+                winnerDisplay.innerHTML = `${playerTwo.name} wins! Press "Reset" to start a new game.`;
         };
 
-        
-        
     };
 
-    //Resets the game when running. WIP
+    //Resets the game upon resetButton click.
     let resetGame = () => {
-        console.log('Restarting game...')
         winnerDisplay.innerHTML = '';
         gameBoard.array = ['','','','','','','','','']
         gameBoard.winner = '';
@@ -122,6 +119,8 @@ const gameBoard = (() => {
         document.getElementById(`square6`).innerHTML = '';
         document.getElementById(`square7`).innerHTML = '';
         document.getElementById(`square8`).innerHTML = '';
+
+        display.currentPlayer()
     }
     let resetButton = document.getElementById('reset')
     resetButton.addEventListener('click', function(e){
@@ -129,7 +128,6 @@ const gameBoard = (() => {
     })
     
     return {array, winner, createGrid, winCheck, endGame, resetGame, resetButton};
-    
 })()
 
 
@@ -140,6 +138,9 @@ const display =(() => {
         //If Statement will stop the game if a winner was already declared
         if (gameBoard.winner == playerOne.name || gameBoard.winner == playerTwo.name) {
             alert('The game is already over. Press "Reset" to start a new game.')
+            return
+        } else if(playerOne.name == 'Temp1' || playerTwo.name == 'Temp2'){
+            alert('Please press "Name Change" to get started.')
             return
         } else {
 
@@ -231,8 +232,8 @@ const display =(() => {
                             console.log("You cannot override this answer.")
                             break 
                         } else {
-                            gameBoard.winCheck()
                             gameBoard.array[6] = 'X'
+                            gameBoard.winCheck()
                             document.getElementById(`square6`).innerHTML = gameBoard.array[6]
                             playerOne.marker = false
                             currentPlayer()
@@ -402,15 +403,23 @@ const display =(() => {
             currentPlayer.innerHTML = '';
             playerOne.marker = true; // <= Resets player order, for resetGame()
         } else if (playerOne.marker == true){
-            currentPlayer.innerHTML = 'It is Player Ones turn';
+            currentPlayer.innerHTML = `It is ${playerOne.name}'s turn`;
         } else if (playerOne.marker == false){
-            currentPlayer.innerHTML = 'It is Player Twos turn';
+            currentPlayer.innerHTML = `It is ${playerTwo.name}'s turn`;
         }
 
     };
 
-    return {playerSensor, currentPlayer}
+    let displayForm = () => {
+        let formDisplay = document.getElementById('formContainer')
+        if (formDisplay.style.display === "none") {
+            formDisplay.style.display = "block";
+        } else { 
+            formDisplay.style.display = "none";
+        }
+    };
 
+    return {playerSensor, currentPlayer, displayForm}
 })()
 
 //Factory
@@ -420,7 +429,20 @@ const playerFactory = (name, marker) => {
     //Used to switch between the active player marking the board
     marker = marker;
 
-    return {name, marker};
+    let nameChange = () => {
+        let name1 = document.getElementById('p1Name').value
+        let name2 = document.getElementById('p2Name').value
+
+        switch(name){
+            case 'Temp1':
+                return playerOne.name = name1
+            case 'Temp2':
+                return playerTwo.name = name2
+        }
+
+    }
+
+    return {name, marker, nameChange};
 };
 
 //Global

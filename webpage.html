@@ -5,10 +5,27 @@
     </head>
 <body>
     <div id="winner"></div>
-
     <div id="currentPlayer"></div>
-    <button id="reset">Reset</button>
 
+    <button type="button" id="newGame" onclick="display.displayForm()"> Name Change </button>
+    <button type ="button" id="reset">Reset</button>
+
+    <div id="formContainer" style="display: none;">
+
+        <form id="nameForm" onsubmit="return false" method="POST">
+            <label for="p1Name">Player one:</label>
+            <input type="text" class="nameInput" id="p1Name" name="p1Name">
+
+            <label for="p2Name">Player two:</label>
+            <input type="text" class="nameInput" id="p2Name" name="p2Name">
+
+            <input type="submit" id="submit" value="Submit" onclick="display.displayForm()
+             playerOne.nameChange(); playerTwo.nameChange()">
+        </form>
+
+    </div>
+    
+    
     <div id="boardContainer"></div>
 
 
